@@ -5,63 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Discografia</title>
     <style>
-        /* Estilos básicos para a interface */
+        /* Estilos atualizados com foco em conforto visual */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #cbd9e8;
+            color: #333;
+            line-height: 1.6;
         }
+        
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        
         .album-form {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #f5f5f5;
-            border-radius: 5px;
+            margin: 30px auto;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
         }
+        
         .album-list {
-            margin-top: 20px;
+            margin-top: 40px;
         }
+        
         .album-item {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s ease;
         }
+        
+        .album-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        form div {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
         button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button[type="submit"] {
+            background-color: #991d2e;
+            color: white;
+            margin-right: 10px;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #64101b;
+        }
+        
+        #cancelBtn {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        #cancelBtn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .album-item button {
+            padding: 8px 15px;
+            margin-left: 8px;
+            border-radius: 6px;
+        }
+        
+        .album-item button:first-of-type {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .album-item button:first-of-type:hover {
+            background-color: #27ae60;
+        }
+        
+        .album-item button:last-of-type {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .album-item button:last-of-type:hover {
+            background-color: #c0392b;
+        }
+        
+        .empty-message {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
 <body>
+    <!-- O restante do HTML permanece igual -->
     <h1>Minha Discografia</h1>
     
-    <!-- Formulário para adicionar/editar álbuns -->
     <div class="album-form">
         <h2>Adicionar/Editar Álbum</h2>
         <form id="albumForm">
             <input type="hidden" id="albumId">
             <div>
-                <label for="title">Título:</label>
+                <label for="title">Nome do Álbum:</label>
                 <input type="text" id="title" required>
             </div>
             <div>
-                <label for="artist">Artista:</label>
+                <label for="artist">Artista/Banda:</label>
                 <input type="text" id="artist" required>
             </div>
             <div>
-                <label for="year">Ano:</label>
+                <label for="year">Ano de Lançamento:</label>
                 <input type="number" id="year" required>
             </div>
             <div>
-                <label for="genre">Gênero:</label>
+                <label for="genre">Gênero Musical:</label>
                 <input type="text" id="genre">
             </div>
-            <button type="submit">Salvar</button>
-            <button type="button" id="cancelBtn">Cancelar</button>
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="submit">Salvar Álbum</button>
+                <button type="button" id="cancelBtn">Cancelar</button>
+            </div>
         </form>
     </div>
     
-    <!-- Lista de álbuns -->
     <div class="album-list">
         <h2>Meus Álbuns</h2>
         <div id="albumsContainer"></div>
