@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const albumIdInput = document.getElementById('albumId');
     const cancelBtn = document.getElementById('cancelBtn');
     const albumsContainer = document.getElementById('albumsContainer');
+
+    let contadorCliques = 0;
+
+    const CONTADOR_CLIQUES = document.getElementById('contador-cliques');
+
     
     // Variável para controlar se estamos editando um álbum
     let isEditing = false;
@@ -107,6 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function saveAlbum(album) {
         // Obtém todos os álbuns
         const albums = getAlbums();
+        contadorCliques++;
+    CONTADOR_CLIQUES.textContent = `Álbuns adicionados: ${contadorCliques}`;
         
         if (isEditing) {
             // Encontra o índice do álbum que está sendo editado
@@ -158,6 +165,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Função para excluir um álbum (exposta no escopo global para ser chamada do HTML)
     window.deleteAlbum = function(id) {
+
+            contadorCliques--;
+            CONTADOR_CLIQUES.textContent =  `Álbuns adicionados: ${contadorCliques}`;
         // Confirmação antes de excluir
         if (!confirm('Tem certeza que deseja excluir este álbum?')) {
             return;
